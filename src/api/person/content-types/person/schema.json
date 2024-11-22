@@ -13,10 +13,12 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "surname": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "gender": {
       "type": "enumeration",
@@ -37,6 +39,16 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "person"
+    },
+    "tlf": {
+      "type": "string",
+      "required": true
+    },
+    "car": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::car.car",
+      "inversedBy": "people"
     }
   }
 }
