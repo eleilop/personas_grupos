@@ -438,7 +438,8 @@ export interface ApiParkingParking extends Schema.CollectionType {
   info: {
     singularName: 'parking';
     pluralName: 'parkings';
-    displayName: 'parking';
+    displayName: 'Parking';
+    description: '';
   };
   options: {
     draftAndPublish: true;
