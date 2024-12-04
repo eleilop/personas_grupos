@@ -362,154 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCarCar extends Schema.CollectionType {
-  collectionName: 'cars';
-  info: {
-    singularName: 'car';
-    pluralName: 'cars';
-    displayName: 'Car';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    plate: Attribute.String & Attribute.Required & Attribute.Unique;
-    brand: Attribute.String & Attribute.Required;
-    model: Attribute.String & Attribute.Required;
-    color: Attribute.String & Attribute.Required;
-    people: Attribute.Relation<
-      'api::car.car',
-      'oneToMany',
-      'api::person.person'
-    >;
-    parking: Attribute.Relation<
-      'api::car.car',
-      'oneToOne',
-      'api::parking.parking'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::car.car', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::car.car', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiGroupGroup extends Schema.CollectionType {
-  collectionName: 'groups';
-  info: {
-    singularName: 'group';
-    pluralName: 'groups';
-    displayName: 'Groups';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    people: Attribute.Relation<
-      'api::group.group',
-      'oneToMany',
-      'api::person.person'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::group.group',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::group.group',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiParkingParking extends Schema.CollectionType {
-  collectionName: 'parkings';
-  info: {
-    singularName: 'parking';
-    pluralName: 'parkings';
-    displayName: 'Parking';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    location: Attribute.String & Attribute.Required & Attribute.Unique;
-    car: Attribute.Relation<'api::parking.parking', 'oneToOne', 'api::car.car'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::parking.parking',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::parking.parking',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPersonPerson extends Schema.CollectionType {
-  collectionName: 'people';
-  info: {
-    singularName: 'person';
-    pluralName: 'people';
-    displayName: 'People';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    surname: Attribute.String & Attribute.Required;
-    gender: Attribute.Enumeration<['male', 'female', 'other']>;
-    group: Attribute.Relation<
-      'api::person.person',
-      'manyToOne',
-      'api::group.group'
-    >;
-    user: Attribute.Relation<
-      'api::person.person',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    tlf: Attribute.String & Attribute.Required;
-    car: Attribute.Relation<'api::person.person', 'manyToOne', 'api::car.car'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::person.person',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::person.person',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -830,6 +682,154 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCarCar extends Schema.CollectionType {
+  collectionName: 'cars';
+  info: {
+    singularName: 'car';
+    pluralName: 'cars';
+    displayName: 'Car';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    plate: Attribute.String & Attribute.Required & Attribute.Unique;
+    brand: Attribute.String & Attribute.Required;
+    model: Attribute.String & Attribute.Required;
+    color: Attribute.String & Attribute.Required;
+    people: Attribute.Relation<
+      'api::car.car',
+      'oneToMany',
+      'api::person.person'
+    >;
+    parking: Attribute.Relation<
+      'api::car.car',
+      'oneToOne',
+      'api::parking.parking'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::car.car', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::car.car', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGroupGroup extends Schema.CollectionType {
+  collectionName: 'groups';
+  info: {
+    singularName: 'group';
+    pluralName: 'groups';
+    displayName: 'Groups';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    people: Attribute.Relation<
+      'api::group.group',
+      'oneToMany',
+      'api::person.person'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::group.group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::group.group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiParkingParking extends Schema.CollectionType {
+  collectionName: 'parkings';
+  info: {
+    singularName: 'parking';
+    pluralName: 'parkings';
+    displayName: 'Parking';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    location: Attribute.String & Attribute.Required & Attribute.Unique;
+    car: Attribute.Relation<'api::parking.parking', 'oneToOne', 'api::car.car'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::parking.parking',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::parking.parking',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPersonPerson extends Schema.CollectionType {
+  collectionName: 'people';
+  info: {
+    singularName: 'person';
+    pluralName: 'people';
+    displayName: 'People';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    surname: Attribute.String & Attribute.Required;
+    gender: Attribute.Enumeration<['male', 'female', 'other']>;
+    group: Attribute.Relation<
+      'api::person.person',
+      'manyToOne',
+      'api::group.group'
+    >;
+    user: Attribute.Relation<
+      'api::person.person',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    tlf: Attribute.String & Attribute.Required;
+    car: Attribute.Relation<'api::person.person', 'manyToOne', 'api::car.car'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::person.person',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::person.person',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -840,16 +840,16 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::car.car': ApiCarCar;
-      'api::group.group': ApiGroupGroup;
-      'api::parking.parking': ApiParkingParking;
-      'api::person.person': ApiPersonPerson;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::car.car': ApiCarCar;
+      'api::group.group': ApiGroupGroup;
+      'api::parking.parking': ApiParkingParking;
+      'api::person.person': ApiPersonPerson;
     }
   }
 }
